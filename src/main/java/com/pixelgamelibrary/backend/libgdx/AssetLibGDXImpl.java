@@ -20,12 +20,18 @@
 package com.pixelgamelibrary.backend.libgdx;
 
 import com.pixelgamelibrary.api.interfaces.AssetI;
+import com.pixelgamelibrary.api.storage.Storage;
 
 /**
  *
  * @author robertvokac
  */
 public class AssetLibGDXImpl implements AssetI {
+
+    @Override
+    public Storage getAssets() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
    
 
