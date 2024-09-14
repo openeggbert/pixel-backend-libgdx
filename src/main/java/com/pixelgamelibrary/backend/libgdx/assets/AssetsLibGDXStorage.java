@@ -35,7 +35,7 @@ public class AssetsLibGDXStorage implements Storage {
 
     @Override
     public String changeDirectory(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         if (!assets.containsDirectory(path)) {
             String msg = "There is no such directory in assets: " + path;
             Pixel.app().log(msg);
@@ -61,10 +61,17 @@ public class AssetsLibGDXStorage implements Storage {
 
     @Override
     public List<String> list(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        if (path.equals("/")) {
+            return assets
+                    .listRoot()
+                    .stream()
+                    .map(s -> "/" + s)
+                    .collect(Collectors.toList());
+        }
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         final String finalPath = path;
         return assets
-                .list(path)
+                .list(finalPath)
                 .stream()
                 .map(s -> finalPath + "/" + s)
                 .collect(Collectors.toList());
@@ -97,13 +104,13 @@ public class AssetsLibGDXStorage implements Storage {
 
     @Override
     public String readString(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         return createEmbeddedLibGDXFileHandle(path).readString();
     }
 
     @Override
     public byte[] readBytes(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         return createEmbeddedLibGDXFileHandle(path).readBytes();
     }
 
@@ -119,20 +126,24 @@ public class AssetsLibGDXStorage implements Storage {
 
     @Override
     public boolean exists(String path) {
-        
-        path = convertToAbsolutePathIfNeeded(path);
+
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         return createEmbeddedLibGDXFileHandle(path).exists();
+    }
+    public String convertToAbsolutePathIfNeededButWithoutLeadingSlash(String path) {
+        path = convertToAbsolutePathIfNeeded(path);
+        return path.substring(1);
     }
 
     @Override
     public boolean isFile(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         return !createEmbeddedLibGDXFileHandle(path).isDirectory();
     }
 
     @Override
     public boolean isDirectory(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         return createEmbeddedLibGDXFileHandle(path).isDirectory();
     }
 
@@ -148,16 +159,16 @@ public class AssetsLibGDXStorage implements Storage {
 
     @Override
     public FileType type(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         return isDirectory(path) ? FileType.DIRECTORY : FileType.FILE;
     }
 
     @Override
     public RegularFileType getRegularFileType(String path) {
-        path = convertToAbsolutePathIfNeeded(path);
+        path = convertToAbsolutePathIfNeededButWithoutLeadingSlash(path);
         return isTextFile(createEmbeddedLibGDXFileHandle(path)) ? RegularFileType.TEXT : RegularFileType.BINARY;
     }
-    
+
     private boolean isTextFile(com.badlogic.gdx.files.FileHandle file) {
         String content = file.readString();
         return isTextFile(content);
