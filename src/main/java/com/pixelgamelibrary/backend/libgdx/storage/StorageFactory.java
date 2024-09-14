@@ -39,8 +39,8 @@ public class StorageFactory {
     public static Storage getStorage() {
         final Platform platform = Pixel.app().getPlatform();
         if (storage == null) {
-            storage = new MemoryStorage();
-        }
+            storage = new PreferencesStorage();
+        }//todo fixme
         if (storage == null) {
 
             if (platform.isDesktop()) {
@@ -50,7 +50,7 @@ public class StorageFactory {
                 storage = new AndroidStorage();
             }
             if (platform.isWeb()) {
-                storage = new WebGLStorage();
+                storage = new PreferencesStorage();
             }
         }
         if (storage == null) {

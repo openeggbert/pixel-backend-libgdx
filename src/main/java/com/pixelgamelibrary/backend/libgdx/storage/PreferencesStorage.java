@@ -28,21 +28,21 @@ import com.pixelgamelibrary.api.storage.map.MapStorage;
  *
  * @author robertvokac
  */
-public class WebGLStorage extends MapStorage {
+public class PreferencesStorage extends MapStorage {
 
     public Platform getPlatform() {
         return Platform.WEB;
     }
 
-    public WebGLStorage() {
+    public PreferencesStorage() {
         this("pixel.libgdx.webGL.Local-Storage");
     }
 
-    public WebGLStorage(String preferencesName) {
+    public PreferencesStorage(String preferencesName) {
         this(Gdx.app.getPreferences(preferencesName));
     }
 
-    public WebGLStorage(Preferences preferences) {
+    public PreferencesStorage(Preferences preferences) {
         super(new SimpleLocalStorageMap(preferences));
     }
 
