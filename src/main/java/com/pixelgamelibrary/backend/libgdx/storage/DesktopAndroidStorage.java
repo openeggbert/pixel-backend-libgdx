@@ -139,12 +139,12 @@ public abstract class DesktopAndroidStorage implements Storage {
 
     @Override
     public byte[] readBytes(String path) {
-
         try {
             path = convertToAbsolutePathIfNeeded(path);
-            InputStream is = createLibGdxFileHandle(path).read();
-            return is.readAllBytes();
-        } catch (IOException ex) {
+            // Use FileHandle's readBytes() method directly, as GWT supports it
+            com.badlogic.gdx.files.FileHandle fileHandle = createLibGdxFileHandle(path);
+            return fileHandle.readBytes();
+        } catch (Exception ex) {
             Pixel.app().error(ex.getMessage());
             throw new StorageException(ex.getMessage());
         }
@@ -241,15 +241,18 @@ public abstract class DesktopAndroidStorage implements Storage {
     public static boolean isTextFile(com.badlogic.gdx.files.FileHandle file) {
         try {
             String content = file.readString();
-            // Check if the content contains non-printable characters (indicating binary)
-            for (char c : content.toCharArray()) {
-                if (Character.isISOControl(c) && !Character.isWhitespace(c)) {
-                    return false; // It's likely binary if it contains control characters
+            // Check if the content contains any non-printable characters
+            for (int i = 0; i < content.length(); i++) {
+                char c = content.charAt(i);
+                // In GWT, use a simpler check for control characters
+                if (c < 32 && !Character.isWhitespace(c)) {
+                    return false; // Likely a binary file due to control characters
                 }
             }
             return true;
         } catch (Exception e) {
-            return false; // Unable to read as text, so it's likely binary
+            // If there's an exception while reading the file as a string, assume it's binary
+            return false;
         }
     }
 
