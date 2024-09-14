@@ -30,12 +30,13 @@ import com.pixelgamelibrary.api.storage.map.MapStorage;
  */
 public class PreferencesStorage extends MapStorage {
 
+    
     public Platform getPlatform() {
         return Platform.WEB;
     }
 
     public PreferencesStorage() {
-        this("pixel.libgdx.webGL.Local-Storage");
+        this("com.pixelgamelibrary.backend.libgdx.storage.PreferencesStorage");
     }
 
     public PreferencesStorage(String preferencesName) {

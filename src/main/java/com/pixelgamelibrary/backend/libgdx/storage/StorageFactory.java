@@ -19,7 +19,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.storage;
 
-import com.pixelgamelibrary.api.storage.map.MemoryStorage;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.storage.Storage;
@@ -38,19 +37,20 @@ public class StorageFactory {
 
     public static Storage getStorage() {
         final Platform platform = Pixel.app().getPlatform();
+//        if (storage == null) {
+//            storage = new PreferencesStorage();
+//        }//todo fixme
         if (storage == null) {
-            storage = new PreferencesStorage();
-        }//todo fixme
-        if (storage == null) {
+            final String appName = Pixel.app().getAppName();
 
             if (platform.isDesktop()) {
-                storage = new DesktopStorage();
+                storage = new DesktopStorage(appName);
             }
             if (platform.isAndroid()) {
-                storage = new AndroidStorage();
+                storage = new AndroidStorage(appName);
             }
             if (platform.isWeb()) {
-                storage = new PreferencesStorage();
+                storage = new PreferencesStorage(appName);
             }
         }
         if (storage == null) {

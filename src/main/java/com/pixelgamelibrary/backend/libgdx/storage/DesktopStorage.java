@@ -20,8 +20,6 @@
 package com.pixelgamelibrary.backend.libgdx.storage;
 
 import com.pixelgamelibrary.api.Platform;
-import com.pixelgamelibrary.api.storage.FileType;
-import com.pixelgamelibrary.api.storage.RegularFileType;
 
 /**
  *
@@ -29,9 +27,11 @@ import com.pixelgamelibrary.api.storage.RegularFileType;
  */
 public class DesktopStorage extends DesktopAndroidStorage {
 
-    public DesktopStorage() {
+    public DesktopStorage(String storageName) {
+        super(storageName);
     }
 
+    @Override
     public Platform getPlatform() {
         return Platform.DESKTOP;
     }

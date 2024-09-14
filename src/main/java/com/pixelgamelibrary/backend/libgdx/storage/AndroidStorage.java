@@ -27,9 +27,11 @@ import com.pixelgamelibrary.api.Platform;
  */
 public class AndroidStorage extends DesktopAndroidStorage {
 
-    public AndroidStorage() {
+    public AndroidStorage(String storageName) {
+        super(storageName);
     }
 
+    @Override
     public Platform getPlatform() {
         return Platform.ANDROID;
     }

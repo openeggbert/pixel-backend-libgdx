@@ -34,7 +34,10 @@ import com.pixelgamelibrary.api.interfaces.AppI;
  */
 public class AppLibGDXImpl implements AppI {
 
-    
+    private static final String DEFAULT_APP_NAME = "pixel-app";
+
+    private String appName = null;
+
     @Override
     public void exit() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -54,6 +57,7 @@ public class AppLibGDXImpl implements AppI {
                 throw new PixelException("Unsupported platform: " + applicationType);
         }
     }
+
     @Override
     public void log(String msg) {
         Application app = Gdx.app;
@@ -77,6 +81,29 @@ public class AppLibGDXImpl implements AppI {
         if (app != null) {
             Gdx.app.debug(getClass().getName(), msg);
         }
+    }
+
+    @Override
+    public void warn(String msg) {
+        log(msg);
+    }
+
+    @Override
+    public void setAppName(String appNameIn) {
+        if (appNameIn != null) {
+            throw new UnsupportedOperationException("App name was already set.");
+        }
+        this.appName = appNameIn;
+    }
+
+    @Override
+    public String getAppName() {
+        return isAppNameSet() ? appName : DEFAULT_APP_NAME;
+    }
+
+    @Override
+    public boolean isAppNameSet() {
+        return appName != null;
     }
 
 }
