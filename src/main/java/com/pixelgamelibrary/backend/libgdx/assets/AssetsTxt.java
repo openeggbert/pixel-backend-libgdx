@@ -38,10 +38,9 @@ import java.util.stream.Collectors;
  */
 public class AssetsTxt {
 
-
     private final List<List<String>> filesLists = new ArrayList<>();
     private final List<List<String>> directoriesLists = new ArrayList<>();
-
+    
     private final Set<String> directoriesSet = new HashSet<>();
 
     public AssetsTxt(String readString) {
@@ -79,10 +78,13 @@ public class AssetsTxt {
 
     public void listDirectories() {
         directoriesLists.forEach(l -> System.out.println(convertListStringToStringPath(l)));
+        //return directoriesLists.stream().map(l -> convertListStringToStringPath(l)).collect(Collectors.toList());
     }
 
     public void listFiles() {
         filesLists.forEach(l -> System.out.println(convertListStringToStringPath(l)));
+        //return filesLists.stream().map(l -> convertListStringToStringPath(l)).collect(Collectors.toList());
+
     }
 
     public List<String> listRoot(boolean directoryType, boolean fileType) {
@@ -110,7 +112,7 @@ public class AssetsTxt {
         if (!directoryType && !fileType) {
             throw new StorageException("Invalid arguments, both arguments are false: directoryType, fileType");
         }
-        
+
         if (pathToDirectory.equals(".")) {
             List<String> files = fileType ? filesLists
                     .stream()
@@ -153,21 +155,23 @@ public class AssetsTxt {
         return result;
 
     }
-    
+
     public List<FileHandle> list(FileHandle fileHandle) {
         String pathToDirectory = fileHandle.path();//((fileHandle.path().isEmpty() ? "" : (fileHandle.path() + "/"))) + fileHandle.name();
-        Function<String, FileHandle> createFileHandle = s -> 
-            Gdx.app.getType() == Application.ApplicationType.Desktop ?
-                Gdx.files.classpath(s):Gdx.files.internal(s)
-        ;
+        Function<String, FileHandle> createFileHandle = s
+                -> Gdx.app.getType() == Application.ApplicationType.Desktop
+                ? Gdx.files.classpath(s) : Gdx.files.internal(s);
         return AssetsTxt.this.list(pathToDirectory)
                 .stream()
-                .map(p-> createFileHandle.apply((pathToDirectory.equals(".") ? "" : (pathToDirectory + "/")) + p))
+                .map(p -> createFileHandle.apply((pathToDirectory.equals(".") ? "" : (pathToDirectory + "/")) + p))
                 .collect(Collectors.toList());
     }
 
-    private static String convertListStringToStringPath(List<String> list) {
+    static String convertListStringToStringPath(List<String> list) {
         return list.stream().collect(Collectors.joining("/"));
     }
-
+    
+    public boolean containsDirectory(String path) {
+        return directoriesSet.contains(path); 
+    }
 }

@@ -25,8 +25,6 @@ import com.pixelgamelibrary.api.storage.FileType;
 import com.pixelgamelibrary.api.storage.RegularFileType;
 import com.pixelgamelibrary.api.storage.Storage;
 import com.pixelgamelibrary.api.storage.StorageException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -238,22 +236,14 @@ public abstract class DesktopAndroidStorage implements Storage {
         return isTextFile(createLibGdxFileHandle(path)) ? RegularFileType.TEXT : RegularFileType.BINARY;
     }
 
-    public static boolean isTextFile(com.badlogic.gdx.files.FileHandle file) {
+    
+    private boolean isTextFile(com.badlogic.gdx.files.FileHandle file) {
+        String content;
         try {
-            String content = file.readString();
-            // Check if the content contains any non-printable characters
-            for (int i = 0; i < content.length(); i++) {
-                char c = content.charAt(i);
-                // In GWT, use a simpler check for control characters
-                if (c < 32 && !Character.isWhitespace(c)) {
-                    return false; // Likely a binary file due to control characters
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            // If there's an exception while reading the file as a string, assume it's binary
-            return false;
-        }
+        content = file.readString();
+        } catch(Exception e) {System.out.println(e.getMessage());throw e;}
+        return isTextFile(content);
     }
+
 
 }
