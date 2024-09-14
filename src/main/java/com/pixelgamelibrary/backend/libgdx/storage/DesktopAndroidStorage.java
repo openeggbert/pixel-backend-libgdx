@@ -66,7 +66,7 @@ public abstract class DesktopAndroidStorage implements Storage {
 
     }
 
-    private com.badlogic.gdx.files.FileHandle createLibGdxFileHandle(String path) {
+    com.badlogic.gdx.files.FileHandle createLibGdxFileHandle(String path) {
         if (path.equals("/")) {
             return Gdx.files.local(storageName);
         } else {

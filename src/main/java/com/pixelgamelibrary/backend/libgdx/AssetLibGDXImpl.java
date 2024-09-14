@@ -21,6 +21,7 @@ package com.pixelgamelibrary.backend.libgdx;
 
 import com.pixelgamelibrary.api.interfaces.AssetI;
 import com.pixelgamelibrary.api.storage.Storage;
+import com.pixelgamelibrary.backend.libgdx.assets.AssetsLibGDXStorage;
 
 /**
  *
@@ -28,9 +29,13 @@ import com.pixelgamelibrary.api.storage.Storage;
  */
 public class AssetLibGDXImpl implements AssetI {
 
+    Storage assetsStorage = null;
     @Override
     public Storage getAssets() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(assetsStorage == null) {
+            assetsStorage = new AssetsLibGDXStorage();
+        }
+        return assetsStorage;
     }
 
    
