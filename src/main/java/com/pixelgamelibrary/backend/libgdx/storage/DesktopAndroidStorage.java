@@ -20,6 +20,8 @@
 package com.pixelgamelibrary.backend.libgdx.storage;
 
 import com.pixelgamelibrary.api.Platform;
+import com.pixelgamelibrary.api.storage.FileType;
+import com.pixelgamelibrary.api.storage.RegularFileType;
 import com.pixelgamelibrary.api.storage.Storage;
 import java.util.List;
 
@@ -38,22 +40,22 @@ public abstract class DesktopAndroidStorage implements Storage {
     }
 
     @Override
-    public String cd(String path) {
+    public String changeDirectory(String path) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String mkdir(String name) {
+    public String createDirectory(String name) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String pwd() {
+    public String printWorkingDirectory() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<String> ls(String path) {
+    public List<String> list(String path) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -68,37 +70,37 @@ public abstract class DesktopAndroidStorage implements Storage {
     }
 
     @Override
-    public boolean rm(String name) {
+    public boolean remove(String name) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String cp(String source, String target) {
+    public String copy(String source, String target) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String mv(String source, String target) {
+    public String move(String source, String target) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String readtext(String name) {
+    public String readString(String name) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public byte[] readbin(String name) {
+    public byte[] readBytes(String name) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String savetext(String name, String text) {
+    public String writeString(String name, String text) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String savebin(String name, byte[] data) {
+    public String writeBytes(String name, byte[] data) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -108,12 +110,12 @@ public abstract class DesktopAndroidStorage implements Storage {
     }
 
     @Override
-    public boolean isfile(String name) {
+    public boolean isFile(String name) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean isdir(String name) {
+    public boolean isDirectory(String name) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -128,7 +130,16 @@ public abstract class DesktopAndroidStorage implements Storage {
     }
     
     @Override
-    public boolean rmdir(String dirname) {
+    public boolean removeDirectory(String dirname) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+        @Override
+    public FileType type(String path) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public RegularFileType getRegularFileType(String path) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
