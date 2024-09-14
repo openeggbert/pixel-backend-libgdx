@@ -23,12 +23,26 @@ import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.XmlReader;
 import com.pixelgamelibrary.api.interfaces.XmlElement;
 import com.pixelgamelibrary.api.interfaces.UtilsI;
+import java.util.List;
+import java.util.Map;
+import com.badlogic.gdx.utils.compression.Lzma;
+import com.pixelgamelibrary.api.PixelException;
+import com.pixelgamelibrary.api.interfaces.AppI;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  *
  * @author robertvokac
  */
 public class UtilsLibGDXImpl implements UtilsI {
+
+    private final AppI appI;
+
+    public UtilsLibGDXImpl(AppI appI) {
+        this.appI = appI;
+    }
 
     @Override
     public XmlElement parseXml(String xmlString) {
@@ -44,6 +58,58 @@ public class UtilsLibGDXImpl implements UtilsI {
     public String encodeToBase64(byte[] data) {
         return String.valueOf(Base64Coder.encode(data));
     }
-   
+
+    @Override
+    public List<String> listSupportedCompressions() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public byte[] compress(byte[] data, String compression, Map<String, String> arguments) {
+        switch (compression) {
+            case "LZMA": {
+                try {
+                    return compressLzma(data);
+                } catch (IOException ex) {
+                    appI.error(ex.getMessage());
+                    throw new PixelException(ex.getMessage());
+                }
+            }
+
+            default:
+                throw new UnsupportedOperationException("This type of compression is not supported: " + compression);
+        }
+
+    }
+
+    @Override
+    public byte[] decompress(byte[] data, String compression) {
+        switch (compression) {
+            case "LZMA": {
+                try {
+                    return decompressLzma(data);
+                } catch (IOException ex) {
+                    appI.error(ex.getMessage());
+                    throw new PixelException(ex.getMessage());
+                }
+            }
+
+            default:
+                throw new UnsupportedOperationException("This type of compression is not supported: " + compression);
+        }
+    }
+
+    public byte[] compressLzma(byte[] data) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Lzma.compress(new ByteArrayInputStream(data), outputStream);
+        return outputStream.toByteArray();
+    }
+
+    public byte[] decompressLzma(byte[] compressedData) throws IOException {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(compressedData);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Lzma.decompress(inputStream, outputStream);
+        return outputStream.toByteArray();
+    }
 
 }

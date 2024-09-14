@@ -19,11 +19,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.badlogic.gdx.Application;
-import static com.badlogic.gdx.Application.ApplicationType.Desktop;
-import com.badlogic.gdx.Gdx;
-import com.pixelgamelibrary.api.PixelException;
-import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.interfaces.AppI;
 import com.pixelgamelibrary.api.interfaces.AssetI;
 import com.pixelgamelibrary.api.interfaces.AudioI;
@@ -107,7 +102,7 @@ public class PixelBackendLibGDX implements PixelBackend {
     public UtilsI utils() {
 
         if (pixelUtilsLibGdxImpl == null) {
-            pixelUtilsLibGdxImpl = new UtilsLibGDXImpl();
+            pixelUtilsLibGdxImpl = new UtilsLibGDXImpl(app());
         }
         return pixelUtilsLibGdxImpl;    }
 
