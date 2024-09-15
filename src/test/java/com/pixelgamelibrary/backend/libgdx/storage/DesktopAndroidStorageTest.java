@@ -2,6 +2,7 @@ package com.pixelgamelibrary.backend.libgdx.storage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.pixelgamelibrary.api.GameI;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.interfaces.AppI;
@@ -9,6 +10,7 @@ import com.pixelgamelibrary.api.interfaces.AssetI;
 import com.pixelgamelibrary.api.interfaces.AudioI;
 import com.pixelgamelibrary.api.interfaces.GraphicsI;
 import com.pixelgamelibrary.api.interfaces.InputI;
+import com.pixelgamelibrary.api.interfaces.InternalI;
 import com.pixelgamelibrary.api.interfaces.NetI;
 import com.pixelgamelibrary.api.interfaces.PixelBackend;
 import com.pixelgamelibrary.api.interfaces.StorageI;
@@ -83,6 +85,16 @@ class DesktopAndroidStorageTest {
                         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
                     }
 
+                    @Override
+                    public void setGame(GameI game) {
+                        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                    }
+
+                    @Override
+                    public GameI getGame() {
+                        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                    }
+
                 };
             }
 
@@ -118,6 +130,11 @@ class DesktopAndroidStorageTest {
 
             @Override
             public UtilsI utils() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public InternalI internal() {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         };

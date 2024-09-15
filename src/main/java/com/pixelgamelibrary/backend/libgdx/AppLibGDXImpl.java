@@ -23,7 +23,9 @@ import com.badlogic.gdx.Application;
 import static com.badlogic.gdx.Application.ApplicationType.Android;
 import static com.badlogic.gdx.Application.ApplicationType.Desktop;
 import static com.badlogic.gdx.Application.ApplicationType.WebGL;
+import static com.badlogic.gdx.Application.ApplicationType.iOS;
 import com.badlogic.gdx.Gdx;
+import com.pixelgamelibrary.api.GameI;
 import com.pixelgamelibrary.api.PixelException;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.interfaces.AppI;
@@ -37,6 +39,7 @@ public class AppLibGDXImpl implements AppI {
     private static final String DEFAULT_APP_NAME = "pixel-app";
 
     private String appName = null;
+    private GameI game;
 
     @Override
     public void exit() {
@@ -53,6 +56,8 @@ public class AppLibGDXImpl implements AppI {
                 return Platform.ANDROID;
             case WebGL:
                 return Platform.WEB;
+            case iOS:
+                return Platform.IOS;
             default:
                 throw new PixelException("Unsupported platform: " + applicationType);
         }
@@ -104,6 +109,16 @@ public class AppLibGDXImpl implements AppI {
     @Override
     public boolean isAppNameSet() {
         return appName != null;
+    }
+
+    @Override
+    public void setGame(GameI game) {
+        this.game = game;
+    }
+
+    @Override
+    public GameI getGame() {
+        return game;
     }
 
 }

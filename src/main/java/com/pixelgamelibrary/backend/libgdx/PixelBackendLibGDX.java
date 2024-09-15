@@ -24,6 +24,7 @@ import com.pixelgamelibrary.api.interfaces.AssetI;
 import com.pixelgamelibrary.api.interfaces.AudioI;
 import com.pixelgamelibrary.api.interfaces.GraphicsI;
 import com.pixelgamelibrary.api.interfaces.InputI;
+import com.pixelgamelibrary.api.interfaces.InternalI;
 import com.pixelgamelibrary.api.interfaces.UtilsI;
 import com.pixelgamelibrary.api.interfaces.StorageI;
 import com.pixelgamelibrary.api.interfaces.NetI;
@@ -43,7 +44,8 @@ public class PixelBackendLibGDX implements PixelBackend {
     private AssetI pixelAssetLibGdxImpl = null;
     private StorageI pixelStorageLibGdxImpl = null;
     private UtilsI pixelUtilsLibGdxImpl = null;
-
+    private InternalI pixelInternalLibGdxImpl = null;
+    
 
     @Override
     public GraphicsI graphics() {
@@ -104,13 +106,24 @@ public class PixelBackendLibGDX implements PixelBackend {
         if (pixelUtilsLibGdxImpl == null) {
             pixelUtilsLibGdxImpl = new UtilsLibGDXImpl(app());
         }
-        return pixelUtilsLibGdxImpl;    }
+        return pixelUtilsLibGdxImpl;
+    }
 
     @Override
     public AppI app() {
         if (pixelAppLibGdxImpl == null) {
             pixelAppLibGdxImpl = new AppLibGDXImpl();
         }
-        return pixelAppLibGdxImpl;       }
+        return pixelAppLibGdxImpl;
+    }
+
+    @Override
+    public InternalI internal() {
+
+        if (pixelInternalLibGdxImpl == null) {
+            pixelInternalLibGdxImpl = new InternalLibGDXImpl();
+        }
+        return pixelInternalLibGdxImpl;
+    }
 
 }

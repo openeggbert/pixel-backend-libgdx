@@ -36,7 +36,7 @@ public class GraphicsLibGDXImpl implements GraphicsI {
 
     
     @Override
-    public String setDisplayMode(boolean fullscreen, boolean window) {
+    public WindowMode setDisplayMode(boolean fullscreen, boolean window) {
 
         if (fullscreen) {
             Graphics.Monitor currentMonitor = Gdx.graphics.getMonitor();
