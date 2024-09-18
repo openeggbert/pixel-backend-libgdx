@@ -21,7 +21,6 @@ package com.pixelgamelibrary.backend.libgdx.storage;
 
 import com.badlogic.gdx.Gdx;
 import com.pixelgamelibrary.api.Pixel;
-import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.storage.FileType;
 import com.pixelgamelibrary.api.storage.RegularFileType;
 import com.pixelgamelibrary.api.storage.Storage;

@@ -1,6 +1,8 @@
 package com.pixelgamelibrary.backend.libgdx.assets;
 
+import com.pixelgamelibrary.api.utils.AssetsTxt;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.storage.FileType;
@@ -17,6 +19,7 @@ import lombok.Getter;
  */
 public class AssetsLibGDXStorage implements Storage {
 
+    private boolean isProbablyTeaVM = false;
     @Getter
     private final AssetsTxt assets;
     private String workingDirectory = "/";
@@ -25,8 +28,15 @@ public class AssetsLibGDXStorage implements Storage {
         assets = new AssetsTxt(readAssetsTxt());
     }
 
-    private static String readAssetsTxt() {
-        return Gdx.files.internal("assets.txt").readString();
+    private String readAssetsTxt() {
+        final String ASSETSTXT = "assets.txt";
+        
+        FileHandle fileHandle = Gdx.files.internal(ASSETSTXT);
+        if(!fileHandle.exists()) {
+            fileHandle = Gdx.files.classpath(ASSETSTXT);
+            isProbablyTeaVM = true;
+        }
+        return fileHandle.readString();
     }
 
     @Override
@@ -177,7 +187,7 @@ public class AssetsLibGDXStorage implements Storage {
 
     private com.badlogic.gdx.files.FileHandle createEmbeddedLibGDXFileHandle(String name) {
 
-        if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB)) {
+        if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB) && !isProbablyTeaVM) {
             return Gdx.files.internal(name);
         } else {
             return Gdx.files.classpath(name);
