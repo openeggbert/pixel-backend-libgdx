@@ -29,11 +29,16 @@ public class AssetsLibGDXStorage implements Storage {
     }
 
     private String readAssetsTxt() {
+        
+        for(FileHandle fh: Gdx.files.internal(".").list() ) {
+        System.out.println("fh=" + fh.path());
+    }
         final String ASSETSTXT = "assets.txt";
+        final String ASSETS_TXT = "assets_.txt";
         
         FileHandle fileHandle = Gdx.files.internal(ASSETSTXT);
         if(!fileHandle.exists()) {
-            fileHandle = Gdx.files.classpath(ASSETSTXT);
+            fileHandle = Gdx.files.internal(ASSETS_TXT);
             isProbablyTeaVM = true;
         }
         return fileHandle.readString();
@@ -187,7 +192,7 @@ public class AssetsLibGDXStorage implements Storage {
 
     private com.badlogic.gdx.files.FileHandle createEmbeddedLibGDXFileHandle(String name) {
 
-        if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB) && !isProbablyTeaVM) {
+        if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB)) {
             return Gdx.files.internal(name);
         } else {
             return Gdx.files.classpath(name);
