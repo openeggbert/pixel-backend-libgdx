@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.screen;
 
-import com.pixelgamelibrary.api.ScreenWrapper;
+import com.pixelgamelibrary.api.screen.ScreenWrapper;
 import lombok.Getter;
-import com.pixelgamelibrary.api.Screen;
+import com.pixelgamelibrary.api.screen.Screen;
 
 /**
  *

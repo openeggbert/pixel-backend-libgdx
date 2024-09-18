@@ -19,11 +19,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.game;
 
-import com.pixelgamelibrary.api.GameWrapper;
+import com.pixelgamelibrary.api.game.GameWrapper;
 import com.pixelgamelibrary.api.OnSetScreenListener;
 import com.pixelgamelibrary.backend.libgdx.screen.LibGdxScreen;
-import com.pixelgamelibrary.api.Game;
-import com.pixelgamelibrary.api.Screen;
+import com.pixelgamelibrary.api.game.Game;
+import com.pixelgamelibrary.api.screen.Screen;
 
 /**
  *

@@ -28,7 +28,7 @@ import com.badlogic.gdx.Gdx;
 import com.pixelgamelibrary.api.PixelException;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.interfaces.App;
-import com.pixelgamelibrary.api.Game;
+import com.pixelgamelibrary.api.game.Game;
 import com.pixelgamelibrary.api.PixelFeature;
 import com.pixelgamelibrary.api.utils.ClipBoard;
 import com.pixelgamelibrary.api.utils.LogLevel;

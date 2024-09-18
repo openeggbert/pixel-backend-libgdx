@@ -26,7 +26,7 @@ import com.pixelgamelibrary.api.interfaces.Internal;
 import com.pixelgamelibrary.api.interfaces.Net;
 import com.pixelgamelibrary.api.interfaces.Utils;
 import com.pixelgamelibrary.api.interfaces.App;
-import com.pixelgamelibrary.api.Game;
+import com.pixelgamelibrary.api.game.Game;
 import com.pixelgamelibrary.api.PixelFeature;
 import com.pixelgamelibrary.api.utils.ClipBoard;
 import com.pixelgamelibrary.api.utils.LogLevel;

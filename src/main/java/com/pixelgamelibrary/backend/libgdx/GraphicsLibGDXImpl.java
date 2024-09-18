@@ -21,7 +21,7 @@ package com.pixelgamelibrary.backend.libgdx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
-import com.pixelgamelibrary.api.WindowMode;
+import com.pixelgamelibrary.api.DisplayMode;
 import com.pixelgamelibrary.api.PixelException;
 import com.pixelgamelibrary.api.utils.Monitor;
 import java.util.Arrays;
@@ -37,7 +37,7 @@ public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.G
 
     
     @Override
-    public WindowMode setDisplayMode(boolean fullscreen, boolean window) {
+    public DisplayMode setDisplayMode(boolean fullscreen, boolean window) {
 
         if (fullscreen) {
             Graphics.Monitor currentMonitor = Gdx.graphics.getMonitor();
@@ -67,13 +67,13 @@ public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.G
                 Gdx.app.error("InitScreen", "Switching to fullscreen mode failed.");
                 return null;
             }
-            return WindowMode.FULLSCREEN;
+            return DisplayMode.FULLSCREEN;
 
         }
         if (window) {
             setToOriginalDisplayMode();
             Gdx.graphics.setWindowedMode(640, 480);
-            return WindowMode.WINDOW;
+            return DisplayMode.WINDOW;
         }
         throw new PixelException("Unsupported DisplayMode: fullscreen=" + fullscreen + " window=" + window);
 
