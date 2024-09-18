@@ -25,21 +25,25 @@ import static com.badlogic.gdx.Application.ApplicationType.Desktop;
 import static com.badlogic.gdx.Application.ApplicationType.WebGL;
 import static com.badlogic.gdx.Application.ApplicationType.iOS;
 import com.badlogic.gdx.Gdx;
-import com.pixelgamelibrary.api.GameI;
 import com.pixelgamelibrary.api.PixelException;
 import com.pixelgamelibrary.api.Platform;
-import com.pixelgamelibrary.api.interfaces.AppI;
+import com.pixelgamelibrary.api.interfaces.App;
+import com.pixelgamelibrary.api.Game;
+import com.pixelgamelibrary.api.PixelFeature;
+import com.pixelgamelibrary.api.utils.ClipBoard;
+import com.pixelgamelibrary.api.utils.LogLevel;
+import com.pixelgamelibrary.api.utils.Preferences;
 
 /**
  *
  * @author robertvokac
  */
-public class AppLibGDXImpl implements AppI {
+public class AppLibGDXImpl implements App {
 
     private static final String DEFAULT_APP_NAME = "pixel-app";
 
     private String appName = null;
-    private GameI game;
+    private Game game;
 
     @Override
     public void exit() {
@@ -112,13 +116,43 @@ public class AppLibGDXImpl implements AppI {
     }
 
     @Override
-    public void setGame(GameI game) {
+    public void setGame(Game game) {
         this.game = game;
     }
 
     @Override
-    public GameI getGame() {
+    public Game getGame() {
         return game;
+    }
+
+    @Override
+    public void setLogLevel(LogLevel logLevel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Preferences getPreferences(String preferencesName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isFeatureEnabled(PixelFeature feature) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isMobileDevice() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postRunnable(Runnable runnable) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ClipBoard getClipBoard() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

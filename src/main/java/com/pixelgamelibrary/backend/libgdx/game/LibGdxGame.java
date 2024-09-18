@@ -19,11 +19,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.game;
 
-import com.pixelgamelibrary.api.GameI;
 import com.pixelgamelibrary.api.GameWrapper;
 import com.pixelgamelibrary.api.OnSetScreenListener;
-import com.pixelgamelibrary.api.ScreenI;
 import com.pixelgamelibrary.backend.libgdx.screen.LibGdxScreen;
+import com.pixelgamelibrary.api.Game;
+import com.pixelgamelibrary.api.Screen;
 
 /**
  *
@@ -31,10 +31,10 @@ import com.pixelgamelibrary.backend.libgdx.screen.LibGdxScreen;
  */
 public class LibGdxGame extends com.badlogic.gdx.Game implements OnSetScreenListener {
 
-    private final GameI game;
+    private final Game game;
 
     @Override
-    public void onSetScreen(ScreenI screen) {
+    public void onSetScreen(Screen screen) {
         setScreen(new LibGdxScreen(screen));
         System.out.println("LibGdxGame:onSetScreen");
     }
@@ -43,7 +43,7 @@ public class LibGdxGame extends com.badlogic.gdx.Game implements OnSetScreenList
 
         private final LibGdxGame libGdxGame;
 
-        public LibGdxGameWrapper(GameI gameI, LibGdxGame libGdxGame) {
+        public LibGdxGameWrapper(Game gameI, LibGdxGame libGdxGame) {
             super(gameI);
             this.libGdxGame = libGdxGame;
             gameI.setOnSetScreenListener(libGdxGame);
@@ -65,7 +65,7 @@ public class LibGdxGame extends com.badlogic.gdx.Game implements OnSetScreenList
 
     }
 
-    public LibGdxGame(GameI game) {
+    public LibGdxGame(Game game) {
         this.game = new LibGdxGameWrapper(game, this);
     }
 

@@ -21,10 +21,12 @@ package com.pixelgamelibrary.backend.libgdx.storage;
 
 import com.badlogic.gdx.Gdx;
 import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.storage.FileType;
 import com.pixelgamelibrary.api.storage.RegularFileType;
 import com.pixelgamelibrary.api.storage.Storage;
 import com.pixelgamelibrary.api.storage.StorageException;
+import com.pixelgamelibrary.api.storage.StorageType;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -243,6 +245,41 @@ public abstract class DesktopAndroidStorage implements Storage {
         content = file.readString();
         } catch(Exception e) {System.out.println(e.getMessage());throw e;}
         return isTextFile(content);
+    }
+
+    @Override
+    public byte[] backup(String methodName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void restore(String methodName, byte[] data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isReadonly() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isEmpty() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public long size() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public StorageType getStorageType() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 

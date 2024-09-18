@@ -19,13 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.api.interfaces.AudioI;
+import com.pixelgamelibrary.api.interfaces.Audio;
 
 /**
  *
  * @author robertvokac
  */
-public class AudioLibGDXImpl implements AudioI {
+public class AudioLibGDXImpl implements Audio {
 
    
 

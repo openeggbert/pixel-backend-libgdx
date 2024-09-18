@@ -19,13 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.api.interfaces.InternalI;
+import com.pixelgamelibrary.api.interfaces.Internal;
 
 /**
  *
  * @author robertvokac
  */
-public class InternalLibGDXImpl implements InternalI {
+public class InternalLibGDXImpl implements Internal {
 
    
 

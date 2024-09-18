@@ -22,25 +22,27 @@ package com.pixelgamelibrary.backend.libgdx;
 import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.XmlReader;
 import com.pixelgamelibrary.api.interfaces.XmlElement;
-import com.pixelgamelibrary.api.interfaces.UtilsI;
 import java.util.List;
 import java.util.Map;
 import com.badlogic.gdx.utils.compression.Lzma;
 import com.pixelgamelibrary.api.PixelException;
-import com.pixelgamelibrary.api.interfaces.AppI;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import com.pixelgamelibrary.api.interfaces.Utils;
+import com.pixelgamelibrary.api.interfaces.App;
+import com.pixelgamelibrary.api.utils.CollectionUtils;
+import com.pixelgamelibrary.api.utils.ReflectionUtils;
 
 /**
  *
  * @author robertvokac
  */
-public class UtilsLibGDXImpl implements UtilsI {
+public class UtilsLibGDXImpl implements Utils {
 
-    private final AppI appI;
+    private final App appI;
 
-    public UtilsLibGDXImpl(AppI appI) {
+    public UtilsLibGDXImpl(App appI) {
         this.appI = appI;
     }
 
@@ -110,6 +112,16 @@ public class UtilsLibGDXImpl implements UtilsI {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Lzma.decompress(inputStream, outputStream);
         return outputStream.toByteArray();
+    }
+
+    @Override
+    public ReflectionUtils reflection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public CollectionUtils collections() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

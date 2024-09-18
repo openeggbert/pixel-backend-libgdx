@@ -19,16 +19,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.api.interfaces.AppI;
-import com.pixelgamelibrary.api.interfaces.AssetI;
-import com.pixelgamelibrary.api.interfaces.AudioI;
-import com.pixelgamelibrary.api.interfaces.GraphicsI;
-import com.pixelgamelibrary.api.interfaces.InputI;
-import com.pixelgamelibrary.api.interfaces.InternalI;
-import com.pixelgamelibrary.api.interfaces.UtilsI;
-import com.pixelgamelibrary.api.interfaces.StorageI;
-import com.pixelgamelibrary.api.interfaces.NetI;
 import com.pixelgamelibrary.api.interfaces.PixelBackend;
+import com.pixelgamelibrary.api.interfaces.Files;
+import com.pixelgamelibrary.api.interfaces.Audio;
+import com.pixelgamelibrary.api.interfaces.Graphics;
+import com.pixelgamelibrary.api.interfaces.Input;
+import com.pixelgamelibrary.api.interfaces.Internal;
+import com.pixelgamelibrary.api.interfaces.Net;
+import com.pixelgamelibrary.api.interfaces.Utils;
+import com.pixelgamelibrary.api.interfaces.App;
 
 /**
  *
@@ -36,19 +35,18 @@ import com.pixelgamelibrary.api.interfaces.PixelBackend;
  */
 public class PixelBackendLibGDX implements PixelBackend {
 
-    private AppI pixelAppLibGdxImpl = null;
-    private GraphicsI pixelGraphicsLibGdxImpl = null;
-    private AudioI pixelAudioLibGdxImpl = null;
-    private InputI pixelInputLibGdxImpl = null;
-    private NetI pixelNetLibGdxImpl = null;
-    private AssetI pixelAssetLibGdxImpl = null;
-    private StorageI pixelStorageLibGdxImpl = null;
-    private UtilsI pixelUtilsLibGdxImpl = null;
-    private InternalI pixelInternalLibGdxImpl = null;
+    private App pixelAppLibGdxImpl = null;
+    private Graphics pixelGraphicsLibGdxImpl = null;
+    private Audio pixelAudioLibGdxImpl = null;
+    private Input pixelInputLibGdxImpl = null;
+    private Net pixelNetLibGdxImpl = null;
+    private Files pixelFilesLibGdxImpl = null;
+    private Utils pixelUtilsLibGdxImpl = null;
+    private Internal pixelInternalLibGdxImpl = null;
     
 
     @Override
-    public GraphicsI graphics() {
+    public Graphics graphics() {
         if (pixelGraphicsLibGdxImpl == null) {
             pixelGraphicsLibGdxImpl = new GraphicsLibGDXImpl();
         }
@@ -56,7 +54,7 @@ public class PixelBackendLibGDX implements PixelBackend {
     }
 
     @Override
-    public AudioI audio() {
+    public Audio audio() {
 
         if (pixelAudioLibGdxImpl == null) {
             pixelAudioLibGdxImpl = new AudioLibGDXImpl();
@@ -65,7 +63,7 @@ public class PixelBackendLibGDX implements PixelBackend {
     }
 
     @Override
-    public InputI input() {
+    public Input input() {
 
         if (pixelInputLibGdxImpl == null) {
             pixelInputLibGdxImpl = new InputLibGDXImpl();
@@ -74,7 +72,7 @@ public class PixelBackendLibGDX implements PixelBackend {
     }
 
     @Override
-    public NetI net() {
+    public Net net() {
 
         if (pixelNetLibGdxImpl == null) {
             pixelNetLibGdxImpl = new NetLibGDXImpl();
@@ -83,25 +81,16 @@ public class PixelBackendLibGDX implements PixelBackend {
     }
 
     @Override
-    public AssetI asset() {
+    public Files files() {
 
-        if (pixelAssetLibGdxImpl == null) {
-            pixelAssetLibGdxImpl = new AssetLibGDXImpl();
+        if (pixelFilesLibGdxImpl == null) {
+            pixelFilesLibGdxImpl = new FilesLibGDXImpl();
         }
-        return pixelAssetLibGdxImpl;
+        return pixelFilesLibGdxImpl;
     }
 
     @Override
-    public StorageI storage() {
-
-        if (pixelStorageLibGdxImpl == null) {
-            pixelStorageLibGdxImpl = new StorageLibGDXImpl();
-        }
-        return pixelStorageLibGdxImpl;
-    }
-
-    @Override
-    public UtilsI utils() {
+    public Utils utils() {
 
         if (pixelUtilsLibGdxImpl == null) {
             pixelUtilsLibGdxImpl = new UtilsLibGDXImpl(app());
@@ -110,7 +99,7 @@ public class PixelBackendLibGDX implements PixelBackend {
     }
 
     @Override
-    public AppI app() {
+    public App app() {
         if (pixelAppLibGdxImpl == null) {
             pixelAppLibGdxImpl = new AppLibGDXImpl();
         }
@@ -118,7 +107,7 @@ public class PixelBackendLibGDX implements PixelBackend {
     }
 
     @Override
-    public InternalI internal() {
+    public Internal internal() {
 
         if (pixelInternalLibGdxImpl == null) {
             pixelInternalLibGdxImpl = new InternalLibGDXImpl();

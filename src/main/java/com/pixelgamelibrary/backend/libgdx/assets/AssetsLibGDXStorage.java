@@ -6,6 +6,7 @@ import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.storage.FileType;
 import com.pixelgamelibrary.api.storage.RegularFileType;
 import com.pixelgamelibrary.api.storage.Storage;
+import com.pixelgamelibrary.api.storage.StorageType;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
@@ -182,6 +183,41 @@ public class AssetsLibGDXStorage implements Storage {
             return Gdx.files.classpath(name);
 
         }
+    }
+
+    @Override
+    public byte[] backup(String methodName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void restore(String methodName, byte[] data) {
+        throw createUnsupportedOperationException();
+    }
+
+    @Override
+    public boolean isReadonly() {
+        return true;
+    }
+
+    @Override
+    public void clear() {
+        throw createUnsupportedOperationException();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public long size() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public StorageType getStorageType() {
+        return StorageType.ASSETS;
     }
 
 }

@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.screen;
 
-import com.pixelgamelibrary.api.ScreenI;
 import com.pixelgamelibrary.api.ScreenWrapper;
 import lombok.Getter;
+import com.pixelgamelibrary.api.Screen;
 
 /**
  *
@@ -30,20 +30,20 @@ import lombok.Getter;
 public class LibGdxScreen extends com.badlogic.gdx.ScreenAdapter {
 
     @Getter
-    private final ScreenI pixelScreen;
+    private final Screen pixelScreen;
 
     class LibGdxScreenWrapper extends ScreenWrapper {
 
         private final LibGdxScreen libGdxScreen;
 
-        public LibGdxScreenWrapper(ScreenI screen, LibGdxScreen libGdxScreenIn) {
+        public LibGdxScreenWrapper(Screen screen, LibGdxScreen libGdxScreenIn) {
             super(screen);
             this.libGdxScreen = libGdxScreenIn;
         }
 
     }
 
-    public LibGdxScreen(ScreenI screen) {
+    public LibGdxScreen(Screen screen) {
         this.pixelScreen = new LibGdxScreenWrapper(screen, this);
         System.out.println("aaaaaa");
     }

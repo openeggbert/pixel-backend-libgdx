@@ -19,13 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.api.interfaces.NetI;
+import com.pixelgamelibrary.api.interfaces.Net;
 
 /**
  *
  * @author robertvokac
  */
-public class NetLibGDXImpl implements NetI {
+public class NetLibGDXImpl implements Net {
 
    
 

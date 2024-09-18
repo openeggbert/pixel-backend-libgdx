@@ -19,13 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.api.interfaces.InputI;
+import com.pixelgamelibrary.api.interfaces.Input;
 
 /**
  *
  * @author robertvokac
  */
-public class InputLibGDXImpl implements InputI {
+public class InputLibGDXImpl implements Input {
 
    
 

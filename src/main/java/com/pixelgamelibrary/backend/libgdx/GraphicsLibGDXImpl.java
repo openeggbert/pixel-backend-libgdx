@@ -23,16 +23,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.pixelgamelibrary.api.WindowMode;
 import com.pixelgamelibrary.api.PixelException;
+import com.pixelgamelibrary.api.utils.Monitor;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import com.pixelgamelibrary.api.interfaces.GraphicsI;
+//import com.pixelgamelibrary.api.interfaces.Graphics;
 
 /**
  *
  * @author robertvokac
  */
-public class GraphicsLibGDXImpl implements GraphicsI {
+public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.Graphics {
 
     
     @Override
@@ -93,5 +94,10 @@ public class GraphicsLibGDXImpl implements GraphicsI {
     }
 
     private Graphics.DisplayMode originalDisplayMode = null;
+
+    @Override
+    public List<Monitor> getMonitors() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
