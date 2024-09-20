@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Pixel: Game library.
+// Pixel: LibGdx Backend.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or

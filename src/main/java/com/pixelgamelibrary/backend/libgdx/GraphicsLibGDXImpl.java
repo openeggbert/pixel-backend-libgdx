@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Pixel: Game library.
+// Pixel: LibGdx Backend.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -21,13 +21,12 @@ package com.pixelgamelibrary.backend.libgdx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
-import com.pixelgamelibrary.api.DisplayMode;
+import com.pixelgamelibrary.api.ViewMode;
 import com.pixelgamelibrary.api.PixelException;
-import com.pixelgamelibrary.api.utils.Monitor;
-import java.util.Arrays;
+import com.pixelgamelibrary.api.graphics.Monitor;
+import com.pixelgamelibrary.backend.libgdx.graphics.LibGdxMonitor;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-//import com.pixelgamelibrary.api.interfaces.Graphics;
 
 /**
  *
@@ -35,69 +34,37 @@ import java.util.stream.Collectors;
  */
 public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.Graphics {
 
-    
-    @Override
-    public DisplayMode setDisplayMode(boolean fullscreen, boolean window) {
-
-        if (fullscreen) {
-            Graphics.Monitor currentMonitor = Gdx.graphics.getMonitor();
-            Graphics.DisplayMode displayModeFromLibGdx = Gdx.graphics.getDisplayMode(currentMonitor);
-            if (originalDisplayMode == null) {
-                originalDisplayMode = displayModeFromLibGdx;
-            }
-
-            Graphics.DisplayMode foundVgaDisplayMode = null;
-            ////
-//            System.out.println("started loading all display modes");
-            List<Graphics.DisplayMode> vgaDisplayModes = Arrays
-                    .asList(Gdx.graphics.getDisplayModes(currentMonitor))
-                    .stream()
-                    .filter(d -> d.width == 640 && d.height == 480)
-                    .collect(Collectors.toList());
-
-//fixme            
-//            foundVgaDisplayMode = vgaDisplayModes.stream()
-//                    .sorted((a, b) -> Integer.valueOf(a.refreshRate).compareTo(b.refreshRate)).findFirst().get();
-//            System.out.println("ended loading all display modes");
-//            System.out.println(foundVgaDisplayMode.refreshRate);
-//            System.out.println(foundVgaDisplayMode.width);
-//            System.out.println(foundVgaDisplayMode.height);
-            ////
-            if (!Gdx.graphics.setFullscreenMode(foundVgaDisplayMode == null ? displayModeFromLibGdx : foundVgaDisplayMode)) {
-                Gdx.app.error("InitScreen", "Switching to fullscreen mode failed.");
-                return null;
-            }
-            return DisplayMode.FULLSCREEN;
-
-        }
-        if (window) {
-            setToOriginalDisplayMode();
-            Gdx.graphics.setWindowedMode(640, 480);
-            return DisplayMode.WINDOW;
-        }
-        throw new PixelException("Unsupported DisplayMode: fullscreen=" + fullscreen + " window=" + window);
-
-    }
-    @Override
-    public boolean setToOriginalDisplayMode() {
-        if (originalDisplayMode == null) {
-            //nothing to do
-            return true;
-        }
-        if (!Gdx.graphics.setFullscreenMode(originalDisplayMode)) {
-            Gdx.app.error("DefinitiveFrameworkLibGdxImpl", "Switching to original display mode failed.");
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-
-    private Graphics.DisplayMode originalDisplayMode = null;
-
     @Override
     public List<Monitor> getMonitors() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Monitor> result = new ArrayList<>();
+        for(Graphics.Monitor m:Gdx.graphics.getMonitors()) {
+            result.add(new LibGdxMonitor(m));
+        }
+        return result;
+    }
+
+    @Override
+    public Monitor getMonitor() {
+        return new LibGdxMonitor(Gdx.graphics.getMonitor());
+    }
+
+    @Override
+    public Monitor getPrimaryMonitor() {
+        return new LibGdxMonitor(Gdx.graphics.getPrimaryMonitor());
+    }
+
+    @Override
+    public String getTitle() {
+        throw new PixelException("Unsupported operation");
+    }
+
+    /**
+     *
+     * @param title
+     */
+    @Override
+    public void setTitle(String title) {
+        Gdx.graphics.setTitle(title);
     }
 
 }
