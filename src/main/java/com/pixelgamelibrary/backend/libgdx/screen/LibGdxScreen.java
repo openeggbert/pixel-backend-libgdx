@@ -50,7 +50,7 @@ public class LibGdxScreen extends com.badlogic.gdx.ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        System.out.println("LibGdxScreen : render");
+        //System.out.println("LibGdxScreen : render");
         pixelScreen.render(delta);
     }
 

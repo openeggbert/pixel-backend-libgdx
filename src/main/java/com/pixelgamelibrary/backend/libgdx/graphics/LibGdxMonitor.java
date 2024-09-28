@@ -137,7 +137,7 @@ public class LibGdxMonitor implements Monitor {
             }
             break;
             case FULLSCREEN:
-                Gdx.graphics.setWindowedMode(width, height);
+                Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode(internalMonitor));
                 break;
             default:
                 throw new PixelException("Unsupported ViewMode: " + viewMode);
