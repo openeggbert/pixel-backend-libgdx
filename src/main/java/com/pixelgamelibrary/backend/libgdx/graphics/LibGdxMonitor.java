@@ -158,4 +158,9 @@ public class LibGdxMonitor implements Monitor {
         return Gdx.graphics.supportsDisplayModeChange();
     }
 
+    @Override
+    public int getDpi() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

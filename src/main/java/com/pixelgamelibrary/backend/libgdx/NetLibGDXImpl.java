@@ -20,12 +20,48 @@
 package com.pixelgamelibrary.backend.libgdx;
 
 import com.pixelgamelibrary.api.interfaces.Net;
+import com.pixelgamelibrary.api.net.http.HttpRequest;
+import com.pixelgamelibrary.api.net.http.HttpResponseListener;
+import com.pixelgamelibrary.api.net.sockets.ClientSocket;
+import com.pixelgamelibrary.api.net.sockets.ClientSocketHints;
+import com.pixelgamelibrary.api.net.sockets.ServerSocket;
+import com.pixelgamelibrary.api.net.sockets.ServerSocketHints;
 
 /**
  *
  * @author robertvokac
  */
 public class NetLibGDXImpl implements Net {
+
+    @Override
+    public void sendHttpRequest(HttpRequest httpRequest, HttpResponseListener httpResponseListener) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void cancelHttpRequest(HttpRequest httpRequest) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isHttpRequestPending(HttpRequest httpRequest) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ServerSocket newServerSocket(String hostNameOrIpAddress, int port, ServerSocketHints hints) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ServerSocket newServerSocket(int port, ServerSocketHints hints) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ClientSocket newClientSocket(String hostNameOrIpAddress, int port, ClientSocketHints hints) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
    
 

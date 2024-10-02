@@ -19,13 +19,26 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
+import com.pixelgamelibrary.api.audio.Music;
+import com.pixelgamelibrary.api.audio.Sound;
 import com.pixelgamelibrary.api.interfaces.Audio;
+import com.pixelgamelibrary.api.storage.FileHandle;
 
 /**
  *
  * @author robertvokac
  */
 public class AudioLibGDXImpl implements Audio {
+
+    @Override
+    public Sound newSound(FileHandle fileHandle) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Music newMusic(FileHandle fileHandle) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
    
 

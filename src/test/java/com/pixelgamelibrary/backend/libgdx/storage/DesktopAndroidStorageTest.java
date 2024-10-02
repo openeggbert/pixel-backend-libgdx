@@ -119,12 +119,17 @@ class DesktopAndroidStorageTest {
                     }
 
                     @Override
-                    public void postRunnable(Runnable runnable) {
+                    public ClipBoard getClipBoard() {
                         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
                     }
 
                     @Override
-                    public ClipBoard getClipBoard() {
+                    public boolean isFeatureEnabled(String feature) {
+                        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                    }
+
+                    @Override
+                    public void runLater(Runnable r) {
                         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
                     }
 

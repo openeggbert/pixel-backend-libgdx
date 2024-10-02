@@ -21,9 +21,10 @@ package com.pixelgamelibrary.backend.libgdx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
-import com.pixelgamelibrary.api.ViewMode;
 import com.pixelgamelibrary.api.PixelException;
+import com.pixelgamelibrary.api.graphics.Cursor;
 import com.pixelgamelibrary.api.graphics.Monitor;
+import com.pixelgamelibrary.api.graphics.Pixmap;
 import com.pixelgamelibrary.backend.libgdx.graphics.LibGdxMonitor;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,31 @@ public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.G
     @Override
     public void setTitle(String title) {
         Gdx.graphics.setTitle(title);
+    }
+
+    @Override
+    public Cursor newCursor(Pixmap pixMap, int x, int y) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setCursor(Cursor cursor) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public float getDeltaTime() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setTargetFPS() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int getTargetFPS() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
