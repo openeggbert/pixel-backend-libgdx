@@ -68,35 +68,45 @@ public class AppLibGDXImpl implements App {
     }
 
     @Override
-    public void log(String msg) {
+    public void log(String tag, String msg) {
         Application app = Gdx.app;
         if (app != null) {
-            Gdx.app.log(getClass().getName(), msg);
+            Gdx.app.log(tag, msg);
         }
     }
 
     @Override
-    public void error(String msg) {
+    public void error(String tag, String msg) {
 
         Application app = Gdx.app;
         if (app != null) {
-            Gdx.app.error(getClass().getName(), msg);
+            Gdx.app.error(tag, msg);
         }
     }
 
     @Override
-    public void debug(String msg) {
+    public void debug(String tag, String msg) {
         Application app = Gdx.app;
         if (app != null) {
-            Gdx.app.debug(getClass().getName(), msg);
+            Gdx.app.debug(tag, msg);
         }
     }
 
     @Override
-    public void warn(String msg) {
+    public void warn(String tag, String msg) {
         log(msg);
     }
 
+        @Override
+    public void fatal(String tag, String msg) {
+        error(tag, msg);
+    }
+
+    @Override
+    public void trace(String tag, String msg) {
+        debug(tag, msg);
+    }
+    
     @Override
     public void setAppName(String appNameIn) {
         if (appNameIn != null) {
@@ -159,5 +169,7 @@ public class AppLibGDXImpl implements App {
     public boolean isFeatureEnabled(String feature) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+
 
 }

@@ -22,9 +22,12 @@ package com.pixelgamelibrary.backend.libgdx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.pixelgamelibrary.api.PixelException;
+import com.pixelgamelibrary.api.graphics.BitmapFontFactory;
 import com.pixelgamelibrary.api.graphics.Cursor;
 import com.pixelgamelibrary.api.graphics.Monitor;
 import com.pixelgamelibrary.api.graphics.Pixmap;
+import com.pixelgamelibrary.api.graphics.SpriteBatchFactory;
+import com.pixelgamelibrary.api.graphics.TextureFactory;
 import com.pixelgamelibrary.backend.libgdx.graphics.LibGdxMonitor;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +93,21 @@ public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.G
 
     @Override
     public int getTargetFPS() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public TextureFactory getTextureFactory() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public SpriteBatchFactory newSpriteBatchFactory() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public BitmapFontFactory newBitmapFontFactory() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

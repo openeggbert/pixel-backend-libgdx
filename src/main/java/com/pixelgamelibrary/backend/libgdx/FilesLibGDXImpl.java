@@ -32,34 +32,34 @@ public class FilesLibGDXImpl implements Files {
     Storage assetsStorage = null;
 
     @Override
-    public Storage local() {
+    public Storage localStorage() {
         return StorageFactory.getStorage();
     }
 
     @Override
-    public Storage assets() {
+    public Storage assetsStorage() {
         if(assetsStorage == null) {
             assetsStorage = new AssetsLibGDXStorage();
         }
         return assetsStorage;    }
 
     @Override
-    public Storage external() {
+    public Storage externalStorage() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Storage relative() {
+    public Storage relativeStorage() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Storage absolute() {
+    public Storage absoluteStorage() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Storage tmp() {
+    public Storage tmpStorage() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
