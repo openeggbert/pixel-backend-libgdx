@@ -19,47 +19,47 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.backend.libgdx.files.StorageFactory;
-import com.pixelgamelibrary.api.files.Storage;
+import com.pixelgamelibrary.backend.libgdx.files.FileSystemFactory;
 import com.pixelgamelibrary.api.interfaces.Files;
-import com.pixelgamelibrary.backend.libgdx.files.AssetsLibGDXStorage;
+import com.pixelgamelibrary.backend.libgdx.files.AssetsLibGDXFileSystem;
+import com.pixelgamelibrary.api.files.FileSystem;
 
 /**
  *
  * @author robertvokac
  */
 public class FilesLibGDXImpl implements Files {
-    Storage assetsStorage = null;
+    FileSystem assetsFileSystem = null;
 
     @Override
-    public Storage localStorage() {
-        return StorageFactory.getStorage();
+    public FileSystem localFileSystem() {
+        return FileSystemFactory.getFileSystem();
     }
 
     @Override
-    public Storage assetsStorage() {
-        if(assetsStorage == null) {
-            assetsStorage = new AssetsLibGDXStorage();
+    public FileSystem assetsFileSystem() {
+        if(assetsFileSystem == null) {
+            assetsFileSystem = new AssetsLibGDXFileSystem();
         }
-        return assetsStorage;    }
+        return assetsFileSystem;    }
 
     @Override
-    public Storage externalStorage() {
+    public FileSystem externalFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Storage relativeStorage() {
+    public FileSystem relativeFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Storage absoluteStorage() {
+    public FileSystem absoluteFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Storage tmpStorage() {
+    public FileSystem tmpFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -19,32 +19,44 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.files;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
+import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
-import com.pixelgamelibrary.api.files.map.MapStorage;
+import com.pixelgamelibrary.api.files.FileException;
+import com.pixelgamelibrary.api.files.FileSystem;
 
 /**
  *
  * @author robertvokac
  */
-public class PreferencesStorage extends MapStorage {
+public class FileSystemFactory {
 
-    
-    public Platform getPlatform() {
-        return Platform.WEB;
+    private FileSystemFactory() {
+        //Not meant to be instantiated.
     }
+    private static FileSystem fs = null;
 
-    public PreferencesStorage() {
-        this("com.pixelgamelibrary.backend.libgdx.storage.PreferencesStorage");
-    }
+    public static FileSystem getFileSystem() {
+        final Platform platform = Pixel.app().getPlatform();
+//        if (fs == null) {
+//            fs = new PreferencesFileSystem();
+//        }//todo fixme
+        if (fs == null) {
+            final String appName = Pixel.app().getAppName();
 
-    public PreferencesStorage(String preferencesName) {
-        this(Gdx.app.getPreferences(preferencesName));
-    }
-
-    public PreferencesStorage(Preferences preferences) {
-        super(new SimpleLocalStorageMap(preferences));
+            if (platform.isDesktop()) {
+                fs = new DesktopFileSystem(appName);
+            }
+            if (platform.isAndroid()) {
+                fs = new AndroidFileSystem(appName);
+            }
+            if (platform.isWeb()) {
+                fs = new PreferencesFileSystem(appName);
+            }
+        }
+        if (fs == null) {
+            throw new FileException("Platform is not supported: " + platform);
+        }
+        return fs;
     }
 
 }

@@ -19,21 +19,32 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.files;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.pixelgamelibrary.api.Platform;
+import com.pixelgamelibrary.api.files.map.MapFileSystem;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorage extends DesktopAndroidStorage {
+public class PreferencesFileSystem extends MapFileSystem {
 
-    public DesktopStorage(String storageName) {
-        super(storageName);
+    
+    public Platform getPlatform() {
+        return Platform.WEB;
     }
 
-    @Override
-    public Platform getPlatform() {
-        return Platform.DESKTOP;
+    public PreferencesFileSystem() {
+        this("com.pixelgamelibrary.backend.libgdx.files.PreferencesFileSystem");
+    }
+
+    public PreferencesFileSystem(String preferencesName) {
+        this(Gdx.app.getPreferences(preferencesName));
+    }
+
+    public PreferencesFileSystem(Preferences preferences) {
+        super(new SimpleLocalStorageMap(preferences));
     }
 
 }

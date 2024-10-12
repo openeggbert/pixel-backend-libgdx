@@ -23,29 +23,29 @@ import com.badlogic.gdx.Gdx;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.files.FileType;
 import com.pixelgamelibrary.api.files.RegularFileType;
-import com.pixelgamelibrary.api.files.Storage;
-import com.pixelgamelibrary.api.files.StorageException;
-import com.pixelgamelibrary.api.files.StorageType;
+import com.pixelgamelibrary.api.files.FileException;
+import com.pixelgamelibrary.api.files.FileSystemType;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.pixelgamelibrary.api.files.FileSystem;
 
 /**
  *
  * @author robertvokac
  */
-public abstract class DesktopAndroidStorage implements Storage {
+public abstract class DesktopAndroidFileSystem implements FileSystem {
 
     private String workingDirectory = "/";
-    private final String storageName;
+    private final String fileSystemName;
 
-    public DesktopAndroidStorage(String storageName) {
-        if (storageName == null || storageName.trim().isEmpty()) {
-            var msg = "storageName == null || storageName.trim().isEmpty()";
+    public DesktopAndroidFileSystem(String FileSystemName) {
+        if (FileSystemName == null || FileSystemName.trim().isEmpty()) {
+            var msg = "fileSystemName == null || fileSystemName.trim().isEmpty()";
             Pixel.app().error(msg);
-            throw new StorageException(msg);
+            throw new FileException(msg);
         }
-        this.storageName = storageName;
+        this.fileSystemName = FileSystemName;
         com.badlogic.gdx.files.FileHandle rootFileHandle = createLibGdxFileHandle("/");
         if (!rootFileHandle.exists()) {
             rootFileHandle.mkdirs();
@@ -67,9 +67,9 @@ public abstract class DesktopAndroidStorage implements Storage {
 
     com.badlogic.gdx.files.FileHandle createLibGdxFileHandle(String path) {
         if (path.equals("/")) {
-            return Gdx.files.local(storageName);
+            return Gdx.files.local(fileSystemName);
         } else {
-            return Gdx.files.local(storageName + "/" + path);
+            return Gdx.files.local(fileSystemName + "/" + path);
         }
 
     }
@@ -145,7 +145,7 @@ public abstract class DesktopAndroidStorage implements Storage {
             return fileHandle.readBytes();
         } catch (Exception ex) {
             Pixel.app().error(ex.getMessage());
-            throw new StorageException(ex.getMessage());
+            throw new FileException(ex.getMessage());
         }
     }
 
@@ -277,7 +277,7 @@ public abstract class DesktopAndroidStorage implements Storage {
     }
 
     @Override
-    public StorageType getStorageType() {
+    public FileSystemType getFileSystemType() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

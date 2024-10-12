@@ -25,10 +25,10 @@ import com.pixelgamelibrary.api.Platform;
  *
  * @author robertvokac
  */
-public class AndroidStorage extends DesktopAndroidStorage {
+public class AndroidFileSystem extends DesktopAndroidFileSystem {
 
-    public AndroidStorage(String storageName) {
-        super(storageName);
+    public AndroidFileSystem(String FileSystemName) {
+        super(FileSystemName);
     }
 
     @Override

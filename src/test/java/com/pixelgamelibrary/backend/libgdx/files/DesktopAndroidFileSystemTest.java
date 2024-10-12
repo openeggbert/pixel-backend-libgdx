@@ -1,13 +1,12 @@
 package com.pixelgamelibrary.backend.libgdx.files;
 
-import com.pixelgamelibrary.backend.libgdx.files.DesktopAndroidStorage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.interfaces.PixelBackend;
 import com.pixelgamelibrary.api.files.RegularFileType;
-import com.pixelgamelibrary.api.files.StorageException;
+import com.pixelgamelibrary.api.files.FileException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -33,9 +32,9 @@ import com.pixelgamelibrary.api.app.ClipBoard;
 import com.pixelgamelibrary.api.app.LogLevel;
 import com.pixelgamelibrary.api.app.Preferences;
 
-class DesktopAndroidStorageTest {
+class DesktopAndroidFileSystemTest {
 
-    private DesktopAndroidStorage storage;
+    private DesktopAndroidFileSystem fs;
     private FileHandle mockFileHandle;
 
        //
@@ -217,7 +216,7 @@ class DesktopAndroidStorageTest {
      
         //
                 
-        storage = new DesktopAndroidStorage("testStorage") {
+        fs = new DesktopAndroidFileSystem("testFileSystem") {
             protected FileHandle createLibGdxFileHandle(String path) {
                 return mockFileHandle;
             }
@@ -230,8 +229,8 @@ class DesktopAndroidStorageTest {
     }
 
     @Test
-    void testConstructor_NullStorageName_ShouldThrowException() {
-        Exception exception = assertThrows(StorageException.class, () -> new DesktopAndroidStorage(null) {
+    void testConstructor_NullFileSystemName_ShouldThrowException() {
+        Exception exception = assertThrows(FileException.class, () -> new DesktopAndroidFileSystem(null) {
             
             protected FileHandle createLibGdxFileHandle(String path) {
                 return mock(FileHandle.class);
@@ -242,37 +241,37 @@ class DesktopAndroidStorageTest {
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
-        assertEquals("storageName == null || storageName.trim().isEmpty()", exception.getMessage());
+        assertEquals("fileSystemName == null || fileSystemName.trim().isEmpty()", exception.getMessage());
     }
 
     @Test
     void testChangeDirectory_NonExistingDirectory_ShouldReturnErrorMessage() {
         when(mockFileHandle.exists()).thenReturn(false);
-        String result = storage.changeDirectory("nonExistingDir");
+        String result = fs.changeDirectory("nonExistingDir");
         assertEquals("Directory does not exist: nonExistingDir", result);
     }
 
     @Disabled @Test
     void testCreateDirectory_ExistingDirectory_ShouldReturnWarning() {
-        when(storage.createLibGdxFileHandle(anyString())).thenReturn(mockFileHandle);
+        when(fs.createLibGdxFileHandle(anyString())).thenReturn(mockFileHandle);
         when(mockFileHandle.exists()).thenReturn(true);
         
         
-        String result = storage.createDirectory("existingDir");
+        String result = fs.createDirectory("existingDir");
         assertEquals("Directory already exists: existingDir", result);
     }
 
     @Test
     void testCreateDirectory_NewDirectory_ShouldCreateDirectory() {
         when(mockFileHandle.exists()).thenReturn(false);
-        String result = storage.createDirectory("newDir");
+        String result = fs.createDirectory("newDir");
         assertEquals("", result);
         verify(mockFileHandle, times(2)).mkdirs();
     }
 
     @Test
     void testTouch_ShouldCreateFile() {
-        String result = storage.touch("testFile.txt");
+        String result = fs.touch("testFile.txt");
         assertEquals("", result);
         verify(mockFileHandle).writeString("", false);
     }
@@ -280,21 +279,21 @@ class DesktopAndroidStorageTest {
     @Test
     void testRemove_ShouldDeleteFile() {
         when(mockFileHandle.delete()).thenReturn(true);
-        boolean result = storage.remove("testFile.txt");
+        boolean result = fs.remove("testFile.txt");
         assertTrue(result);
         verify(mockFileHandle).delete();
     }
 
     @Test
     void testMove_ShouldMoveFile() {
-        storage.move("sourceFile.txt", "targetFile.txt");
+        fs.move("sourceFile.txt", "targetFile.txt");
         verify(mockFileHandle).moveTo(mockFileHandle);
     }
 
     @Test
     void testReadString_ShouldReturnFileContent() {
         when(mockFileHandle.readString()).thenReturn("File content");
-        String result = storage.readString("testFile.txt");
+        String result = fs.readString("testFile.txt");
         assertEquals("File content", result);
     }
 
@@ -304,13 +303,13 @@ class DesktopAndroidStorageTest {
         when(mockFileHandle.read()).thenReturn(mockInputStream);
         when(mockInputStream.readAllBytes()).thenReturn(new byte[]{1, 2, 3});
 
-        byte[] result = storage.readBytes("testFile.bin");
+        byte[] result = fs.readBytes("testFile.bin");
         assertArrayEquals(new byte[]{1, 2, 3}, result);
     }
 
     @Test
     void testWriteString_ShouldWriteToFile() {
-        String result = storage.writeString("testFile.txt", "Hello World");
+        String result = fs.writeString("testFile.txt", "Hello World");
         assertEquals("", result);
         verify(mockFileHandle).writeString("Hello World", false);
     }
@@ -318,19 +317,19 @@ class DesktopAndroidStorageTest {
     @Test
     void testExists_ShouldReturnTrueIfFileExists() {
         when(mockFileHandle.exists()).thenReturn(true);
-        assertTrue(storage.exists("testFile.txt"));
+        assertTrue(fs.exists("testFile.txt"));
     }
 
     @Test
     void testIsDirectory_ShouldReturnTrueForDirectory() {
         when(mockFileHandle.isDirectory()).thenReturn(true);
-        assertTrue(storage.isDirectory("testDir"));
+        assertTrue(fs.isDirectory("testDir"));
     }
 
     @Test
     void testIsFile_ShouldReturnTrueForFile() {
         when(mockFileHandle.isDirectory()).thenReturn(false);
-        assertTrue(storage.isFile("testFile.txt"));
+        assertTrue(fs.isFile("testFile.txt"));
     }
 
     @Disabled @Test
@@ -338,25 +337,25 @@ class DesktopAndroidStorageTest {
         when(mockFileHandle.isDirectory()).thenReturn(true);
         when(mockFileHandle.name()).thenReturn("root");
 
-        String result = storage.debug();
+        String result = fs.debug();
         assertEquals("root\n", result);
     }
 
     @Test
     void testRemoveDirectory_ShouldReturnTrueIfDirectoryDeleted() {
         when(mockFileHandle.deleteDirectory()).thenReturn(true);
-        assertTrue(storage.removeDirectory("testDir"));
+        assertTrue(fs.removeDirectory("testDir"));
     }
 
     @Test
     void testGetRegularFileType_ShouldReturnTextForTextFile() {
         when(mockFileHandle.readString()).thenReturn("This is text");
-        assertEquals(RegularFileType.TEXT, storage.getRegularFileType("testFile.txt"));
+        assertEquals(RegularFileType.TEXT, fs.getRegularFileType("testFile.txt"));
     }
 
     @Disabled @Test
     void testGetRegularFileType_ShouldReturnBinaryForBinaryFile() {
         when(mockFileHandle.readString()).thenThrow(new RuntimeException());
-        assertEquals(RegularFileType.BINARY, storage.getRegularFileType("testFile.bin"));
+        assertEquals(RegularFileType.BINARY, fs.getRegularFileType("testFile.bin"));
     }
 }

@@ -7,24 +7,24 @@ import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.files.FileType;
 import com.pixelgamelibrary.api.files.RegularFileType;
-import com.pixelgamelibrary.api.files.Storage;
-import com.pixelgamelibrary.api.files.StorageType;
+import com.pixelgamelibrary.api.files.FileSystemType;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
+import com.pixelgamelibrary.api.files.FileSystem;
 
 /**
  *
  * @author robertvokac
  */
-public class AssetsLibGDXStorage implements Storage {
+public class AssetsLibGDXFileSystem implements FileSystem {
 
     private boolean isProbablyTeaVM = false;
     @Getter
     private final AssetsTxt assets;
     private String workingDirectory = "/";
 
-    public AssetsLibGDXStorage() {
+    public AssetsLibGDXFileSystem() {
         assets = new AssetsTxt(readAssetsTxt());
     }
 
@@ -231,8 +231,8 @@ public class AssetsLibGDXStorage implements Storage {
     }
 
     @Override
-    public StorageType getStorageType() {
-        return StorageType.ASSETS;
+    public FileSystemType getFileSystemType() {
+        return FileSystemType.ASSETS;
     }
 
 }
