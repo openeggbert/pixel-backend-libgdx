@@ -20,7 +20,6 @@
 package com.pixelgamelibrary.backend.libgdx.graphics;
 
 import com.pixelgamelibrary.api.files.File;
-import com.pixelgamelibrary.api.graphics.Pixmap;
 import com.pixelgamelibrary.api.graphics.Texture;
 import com.pixelgamelibrary.api.graphics.TextureFactory;
 
@@ -42,13 +41,25 @@ public class LibGdxTextureFactory implements TextureFactory{
     }
 
     @Override
-    public Texture create(Pixmap pixmap) {
+    public Texture create(com.pixelgamelibrary.api.graphics.Pixmap pixmap) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Texture create(int width, int height) {
         return new LibGdxTexture(width, height);
+    }
+    
+    @Override
+    public Texture createTransparent(int width, int height) {
+                com.badlogic.gdx.graphics.Pixmap pixmap = new com.badlogic.gdx.graphics.Pixmap(width, height, com.badlogic.gdx.graphics.Pixmap.Format.RGBA8888);
+        pixmap.setColor(0, 0, 0, 0);
+        pixmap.fill();
+        
+        com.badlogic.gdx.graphics.Texture texture = new com.badlogic.gdx.graphics.Texture(pixmap);
+        texture.setFilter(com.badlogic.gdx.graphics.Texture.TextureFilter.Linear, com.badlogic.gdx.graphics.Texture.TextureFilter.Linear);
+        return new LibGdxTexture(texture);
+        
     }
 
 }

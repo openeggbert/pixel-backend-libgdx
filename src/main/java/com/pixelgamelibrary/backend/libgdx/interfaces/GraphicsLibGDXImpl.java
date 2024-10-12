@@ -105,12 +105,12 @@ public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.G
     }
 
     @Override
-    public SpriteBatchFactory newSpriteBatchFactory() {
+    public SpriteBatchFactory getSpriteBatchFactory() {
         return new LibGdxSpriteBatchFactory();
     }
 
     @Override
-    public BitmapFontFactory newBitmapFontFactory() {
+    public BitmapFontFactory getBitmapFontFactory() {
         return new LibGdxBitmapFontFactory();
     }
 

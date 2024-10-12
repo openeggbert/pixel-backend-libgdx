@@ -20,6 +20,7 @@
 package com.pixelgamelibrary.backend.libgdx.graphics;
 
 import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.TextureData;
 import com.pixelgamelibrary.api.files.File;
 import com.pixelgamelibrary.api.graphics.ColorMode;
 import com.pixelgamelibrary.api.graphics.Pixmap;
@@ -102,6 +103,20 @@ public class LibGdxTexture implements com.pixelgamelibrary.api.graphics.Texture 
     @Override
     public boolean isDisposed() {
         return this.disposed;
+    }
+    @Override
+    public void clear() {
+        TextureData textureData = internalTexture.getTextureData();
+        com.badlogic.gdx.graphics.Pixmap pixmap = null;
+        if (textureData.isPrepared()) {
+            pixmap = textureData.consumePixmap();
+        } else {
+            textureData.prepare();
+            pixmap = textureData.consumePixmap();
+        }
+
+        pixmap.setColor(0, 0, 0, 0);
+        pixmap.fill();
     }
 
 }

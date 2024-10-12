@@ -19,6 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx.graphics;
 
+import com.pixelgamelibrary.api.graphics.ShapeRenderer;
+
 /**
  *
  * @author robertvokac
@@ -27,6 +29,7 @@ public class LibGdxSpriteBatch implements com.pixelgamelibrary.api.graphics.Spri
 
     private com.badlogic.gdx.graphics.g2d.SpriteBatch internalBatch;
     private boolean disposed = false;
+    private ShapeRenderer shapeRenderer = null;
 
     public LibGdxSpriteBatch() {
         this(new com.badlogic.gdx.graphics.g2d.SpriteBatch());
@@ -71,6 +74,14 @@ public class LibGdxSpriteBatch implements com.pixelgamelibrary.api.graphics.Spri
     public void dispose() {
         this.disposed = true;
         this.internalBatch.dispose();
+    }
+
+    @Override
+    public ShapeRenderer drawShape() {
+        if(shapeRenderer == null) {
+            shapeRenderer = new LibGdxShapeRenderer(internalBatch);
+        }
+        return shapeRenderer;
     }
 
 }
