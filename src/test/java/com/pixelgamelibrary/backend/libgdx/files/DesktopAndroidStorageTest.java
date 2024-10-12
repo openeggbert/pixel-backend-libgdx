@@ -1,12 +1,13 @@
-package com.pixelgamelibrary.backend.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx.files;
 
+import com.pixelgamelibrary.backend.libgdx.files.DesktopAndroidStorage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
 import com.pixelgamelibrary.api.interfaces.PixelBackend;
-import com.pixelgamelibrary.api.storage.RegularFileType;
-import com.pixelgamelibrary.api.storage.StorageException;
+import com.pixelgamelibrary.api.files.RegularFileType;
+import com.pixelgamelibrary.api.files.StorageException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

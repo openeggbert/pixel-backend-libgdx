@@ -17,34 +17,22 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx.files;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.pixelgamelibrary.api.Platform;
-import com.pixelgamelibrary.api.storage.map.MapStorage;
 
 /**
  *
  * @author robertvokac
  */
-public class PreferencesStorage extends MapStorage {
+public class AndroidStorage extends DesktopAndroidStorage {
 
-    
+    public AndroidStorage(String storageName) {
+        super(storageName);
+    }
+
+    @Override
     public Platform getPlatform() {
-        return Platform.WEB;
+        return Platform.ANDROID;
     }
-
-    public PreferencesStorage() {
-        this("com.pixelgamelibrary.backend.libgdx.storage.PreferencesStorage");
-    }
-
-    public PreferencesStorage(String preferencesName) {
-        this(Gdx.app.getPreferences(preferencesName));
-    }
-
-    public PreferencesStorage(Preferences preferences) {
-        super(new SimpleLocalStorageMap(preferences));
-    }
-
 }

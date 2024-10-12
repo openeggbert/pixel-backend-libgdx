@@ -17,15 +17,15 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx.files;
 
 import com.badlogic.gdx.Gdx;
 import com.pixelgamelibrary.api.Pixel;
-import com.pixelgamelibrary.api.storage.FileType;
-import com.pixelgamelibrary.api.storage.RegularFileType;
-import com.pixelgamelibrary.api.storage.Storage;
-import com.pixelgamelibrary.api.storage.StorageException;
-import com.pixelgamelibrary.api.storage.StorageType;
+import com.pixelgamelibrary.api.files.FileType;
+import com.pixelgamelibrary.api.files.RegularFileType;
+import com.pixelgamelibrary.api.files.Storage;
+import com.pixelgamelibrary.api.files.StorageException;
+import com.pixelgamelibrary.api.files.StorageType;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

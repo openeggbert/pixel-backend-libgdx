@@ -19,10 +19,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.backend.libgdx.storage.StorageFactory;
-import com.pixelgamelibrary.api.storage.Storage;
+import com.pixelgamelibrary.backend.libgdx.files.StorageFactory;
+import com.pixelgamelibrary.api.files.Storage;
 import com.pixelgamelibrary.api.interfaces.Files;
-import com.pixelgamelibrary.backend.libgdx.assets.AssetsLibGDXStorage;
+import com.pixelgamelibrary.backend.libgdx.files.AssetsLibGDXStorage;
 
 /**
  *

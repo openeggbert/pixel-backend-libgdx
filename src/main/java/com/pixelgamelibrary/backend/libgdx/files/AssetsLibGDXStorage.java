@@ -1,14 +1,14 @@
-package com.pixelgamelibrary.backend.libgdx.assets;
+package com.pixelgamelibrary.backend.libgdx.files;
 
 import com.pixelgamelibrary.api.utils.AssetsTxt;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
-import com.pixelgamelibrary.api.storage.FileType;
-import com.pixelgamelibrary.api.storage.RegularFileType;
-import com.pixelgamelibrary.api.storage.Storage;
-import com.pixelgamelibrary.api.storage.StorageType;
+import com.pixelgamelibrary.api.files.FileType;
+import com.pixelgamelibrary.api.files.RegularFileType;
+import com.pixelgamelibrary.api.files.Storage;
+import com.pixelgamelibrary.api.files.StorageType;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;

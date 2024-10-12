@@ -17,23 +17,46 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx.files;
 
+import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.Platform;
+import com.pixelgamelibrary.api.files.Storage;
+import com.pixelgamelibrary.api.files.StorageException;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorage extends DesktopAndroidStorage {
+public class StorageFactory {
 
-    public DesktopStorage(String storageName) {
-        super(storageName);
+    private StorageFactory() {
+        //Not meant to be instantiated.
     }
+    private static Storage storage = null;
 
-    @Override
-    public Platform getPlatform() {
-        return Platform.DESKTOP;
+    public static Storage getStorage() {
+        final Platform platform = Pixel.app().getPlatform();
+//        if (storage == null) {
+//            storage = new PreferencesStorage();
+//        }//todo fixme
+        if (storage == null) {
+            final String appName = Pixel.app().getAppName();
+
+            if (platform.isDesktop()) {
+                storage = new DesktopStorage(appName);
+            }
+            if (platform.isAndroid()) {
+                storage = new AndroidStorage(appName);
+            }
+            if (platform.isWeb()) {
+                storage = new PreferencesStorage(appName);
+            }
+        }
+        if (storage == null) {
+            throw new StorageException("Platform is not supported: " + platform);
+        }
+        return storage;
     }
 
 }

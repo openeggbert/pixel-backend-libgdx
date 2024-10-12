@@ -17,7 +17,7 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx.files;
 
 import com.pixelgamelibrary.api.Platform;
 
@@ -25,14 +25,15 @@ import com.pixelgamelibrary.api.Platform;
  *
  * @author robertvokac
  */
-public class AndroidStorage extends DesktopAndroidStorage {
+public class DesktopStorage extends DesktopAndroidStorage {
 
-    public AndroidStorage(String storageName) {
+    public DesktopStorage(String storageName) {
         super(storageName);
     }
 
     @Override
     public Platform getPlatform() {
-        return Platform.ANDROID;
+        return Platform.DESKTOP;
     }
+
 }

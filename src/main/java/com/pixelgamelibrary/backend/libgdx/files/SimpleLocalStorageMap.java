@@ -17,10 +17,10 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx.files;
 
 import com.badlogic.gdx.Preferences;
-import com.pixelgamelibrary.api.storage.map.SimpleMap;
+import com.pixelgamelibrary.api.files.map.SimpleMap;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
