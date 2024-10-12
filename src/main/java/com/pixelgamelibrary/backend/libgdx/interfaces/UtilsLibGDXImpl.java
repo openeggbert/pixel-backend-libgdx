@@ -33,6 +33,7 @@ import com.pixelgamelibrary.api.interfaces.Utils;
 import com.pixelgamelibrary.api.interfaces.App;
 import com.pixelgamelibrary.api.utils.CollectionUtils;
 import com.pixelgamelibrary.api.utils.ReflectionUtils;
+import com.pixelgamelibrary.backend.libgdx.utils.collections.LibGdxCollectionUtilsImpl;
 
 /**
  *
@@ -118,10 +119,15 @@ public class UtilsLibGDXImpl implements Utils {
     public ReflectionUtils reflection() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public CollectionUtils collections() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(libGdxCollectionUtilsImpl==null){
+            libGdxCollectionUtilsImpl = new LibGdxCollectionUtilsImpl();
+        }
+        return libGdxCollectionUtilsImpl;
     }
+    
+    private LibGdxCollectionUtilsImpl libGdxCollectionUtilsImpl = null;
 
 }
