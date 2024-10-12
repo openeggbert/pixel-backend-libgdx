@@ -17,7 +17,7 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx;
+package com.pixelgamelibrary.backend.libgdx.interfaces;
 
 import com.badlogic.gdx.Application;
 import static com.badlogic.gdx.Application.ApplicationType.Android;
@@ -137,7 +137,31 @@ public class AppLibGDXImpl implements App {
 
     @Override
     public void setLogLevel(LogLevel logLevel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+//        	public static final int LOG_NONE = 0;
+//	public static final int LOG_DEBUG = 3;
+//	public static final int LOG_INFO = 2;
+//	public static final int LOG_ERROR = 1;
+        switch (logLevel) {
+            case NONE:
+                Gdx.app.setLogLevel(Gdx.app.LOG_NONE);
+                break;
+            case FATAL:
+            case ERROR:
+                Gdx.app.setLogLevel(Gdx.app.LOG_ERROR);
+                break;
+            case INFO:
+            case WARN:
+                Gdx.app.setLogLevel(Gdx.app.LOG_INFO);
+                break;
+            case DEBUG:
+            case TRACE:
+                Gdx.app.setLogLevel(Gdx.app.LOG_DEBUG);
+                break;
+            default:
+                throw new UnsupportedOperationException("This LogLevel is not supported: " + logLevel);
+        }
+
     }
 
     @Override

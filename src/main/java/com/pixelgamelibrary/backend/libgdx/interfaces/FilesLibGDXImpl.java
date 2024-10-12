@@ -17,98 +17,67 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx;
+package com.pixelgamelibrary.backend.libgdx.interfaces;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
-import com.pixelgamelibrary.api.PixelException;
-import com.pixelgamelibrary.api.graphics.BitmapFontFactory;
-import com.pixelgamelibrary.api.graphics.Cursor;
-import com.pixelgamelibrary.api.graphics.Monitor;
-import com.pixelgamelibrary.api.graphics.Pixmap;
-import com.pixelgamelibrary.api.graphics.SpriteBatchFactory;
-import com.pixelgamelibrary.api.graphics.TextureFactory;
-import com.pixelgamelibrary.backend.libgdx.graphics.LibGdxMonitor;
-import java.util.ArrayList;
-import java.util.List;
+import com.pixelgamelibrary.backend.libgdx.files.FileSystemFactory;
+import com.pixelgamelibrary.api.interfaces.Files;
+import com.pixelgamelibrary.backend.libgdx.files.AssetsLibGDXFileSystem;
+import com.pixelgamelibrary.api.files.FileSystem;
 
 /**
  *
  * @author robertvokac
  */
-public class GraphicsLibGDXImpl implements com.pixelgamelibrary.api.interfaces.Graphics {
+public class FilesLibGDXImpl implements Files {
+    FileSystem assetsFileSystem = null;
 
     @Override
-    public List<Monitor> getMonitors() {
-        List<Monitor> result = new ArrayList<>();
-        for(Graphics.Monitor m:Gdx.graphics.getMonitors()) {
-            result.add(new LibGdxMonitor(m));
+    public FileSystem localFileSystem() {
+        return FileSystemFactory.getFileSystem();
+    }
+
+    @Override
+    public FileSystem assetsFileSystem() {
+        if(assetsFileSystem == null) {
+            assetsFileSystem = new AssetsLibGDXFileSystem();
         }
-        return result;
-    }
+        return assetsFileSystem;    }
 
     @Override
-    public Monitor getMonitor() {
-        return new LibGdxMonitor(Gdx.graphics.getMonitor());
-    }
-
-    @Override
-    public Monitor getPrimaryMonitor() {
-        return new LibGdxMonitor(Gdx.graphics.getPrimaryMonitor());
-    }
-
-    @Override
-    public String getTitle() {
-        throw new PixelException("Unsupported operation");
-    }
-
-    /**
-     *
-     * @param title
-     */
-    @Override
-    public void setTitle(String title) {
-        Gdx.graphics.setTitle(title);
-    }
-
-    @Override
-    public Cursor newCursor(Pixmap pixMap, int x, int y) {
+    public FileSystem externalFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void setCursor(Cursor cursor) {
+    public FileSystem relativeFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public float getDeltaTime() {
+    public FileSystem absoluteFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void setTargetFPS() {
+    public FileSystem tmpFileSystem() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public int getTargetFPS() {
+    public boolean isExternalStorageAvailable() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public TextureFactory getTextureFactory() {
+    public String getLocalStoragePath() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public SpriteBatchFactory newSpriteBatchFactory() {
+    public String getExternalStoragePath() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public BitmapFontFactory newBitmapFontFactory() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
 }

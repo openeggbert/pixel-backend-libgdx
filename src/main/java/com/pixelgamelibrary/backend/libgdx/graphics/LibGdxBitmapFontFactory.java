@@ -17,29 +17,38 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx;
+package com.pixelgamelibrary.backend.libgdx.graphics;
 
-import com.pixelgamelibrary.api.audio.Music;
-import com.pixelgamelibrary.api.audio.Sound;
-import com.pixelgamelibrary.api.interfaces.Audio;
 import com.pixelgamelibrary.api.files.File;
+import com.pixelgamelibrary.api.graphics.BitmapFont;
+import com.pixelgamelibrary.api.graphics.BitmapFontFactory;
+import com.pixelgamelibrary.api.graphics.TextureRegion;
+
 
 /**
  *
  * @author robertvokac
  */
-public class AudioLibGDXImpl implements Audio {
+public class LibGdxBitmapFontFactory implements BitmapFontFactory{
 
     @Override
-    public Sound newSound(File fileHandle) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public BitmapFont create(boolean flip) {
+        return new LibGdxBitmapFont(flip);
     }
 
     @Override
-    public Music newMusic(File fileHandle) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public BitmapFont create(File fontFile, TextureRegion region, boolean flip) {
+        return new LibGdxBitmapFont(fontFile, region, flip);
     }
 
-   
+    @Override
+    public BitmapFont create(File fontFile, boolean flip) {
+        return new LibGdxBitmapFont(fontFile, flip);
+    }
+
+    @Override
+    public BitmapFont create(File fontFile, File imageFile, boolean flip) {
+        return new LibGdxBitmapFont(fontFile, imageFile, flip);
+    }
 
 }

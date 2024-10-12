@@ -17,16 +17,20 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backend.libgdx;
+package com.pixelgamelibrary.backend.libgdx.graphics;
 
-import com.pixelgamelibrary.api.interfaces.Internal;
+import com.pixelgamelibrary.api.graphics.SpriteBatch;
+import com.pixelgamelibrary.api.graphics.SpriteBatchFactory;
 
 /**
  *
  * @author robertvokac
  */
-public class InternalLibGDXImpl implements Internal {
+public class LibGdxSpriteBatchFactory implements SpriteBatchFactory{
 
-   
+    @Override
+    public SpriteBatch create() {
+        return new LibGdxSpriteBatch();
+    }
 
 }
